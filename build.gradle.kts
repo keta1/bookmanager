@@ -9,6 +9,7 @@ plugins {
 
 group = "icu.ketal.bookmanager"
 version = "1.0-SNAPSHOT"
+project.setProperty("mainClassName", "icu.ketal.bookmanager.Main")
 
 repositories {
     mavenCentral()
@@ -29,6 +30,7 @@ dependencies {
     implementation("org.mybatis:mybatis:3.5.10")
     implementation("com.jfoenix:jfoenix:9.0.10")
 
+    // todo add test code
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 }
@@ -37,7 +39,16 @@ tasks.withType<ShadowJar> {
     manifest {
         attributes["Main-Class"] = "icu.ketal.bookmanager.Main"
     }
-    tasks.getByName("build").dependsOn(this)
+}
+
+tasks.register<Exec>("runJar") {
+    group = "run"
+    tasks.getByName("shadowJar").also { task ->
+        dependsOn(task)
+        commandLine = listOf("java", "-Djdk.gtk.version=2", "-jar",
+            task.outputs.files.joinToString(" ") { it.absolutePath })
+    }
+
 }
 
 tasks.getByName<Test>("test") {
