@@ -2,7 +2,7 @@ package icu.ketal.bookmanager.entry;
 
 import java.util.Objects;
 
-public class Brrow {
+public class Borrow {
     // 借阅编号、书籍编号、操作员编号、读者编号、是否归还、借书日期、应还日期
     private int id;
     private int bookId;
@@ -12,10 +12,10 @@ public class Brrow {
     private long borrowDate;
     private long shouldReturnDate;
 
-    public Brrow() {
+    public Borrow() {
     }
 
-    public Brrow(int id, int bookId, int operatorId, int readerId, boolean returned, long borrowDate, long shouldReturnDate) {
+    public Borrow(int id, int bookId, int operatorId, int readerId, boolean returned, long borrowDate, long shouldReturnDate) {
         this.id = id;
         this.bookId = bookId;
         this.operatorId = operatorId;
@@ -84,8 +84,8 @@ public class Brrow {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Brrow brrow)) return false;
-        return id == brrow.id && bookId == brrow.bookId && operatorId == brrow.operatorId && readerId == brrow.readerId && returned == brrow.returned && borrowDate == brrow.borrowDate && shouldReturnDate == brrow.shouldReturnDate;
+        if (!(o instanceof Borrow borrow)) return false;
+        return id == borrow.id && bookId == borrow.bookId && operatorId == borrow.operatorId && readerId == borrow.readerId && returned == borrow.returned && borrowDate == borrow.borrowDate && shouldReturnDate == borrow.shouldReturnDate;
     }
 
     @Override
