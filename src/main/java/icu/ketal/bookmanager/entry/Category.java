@@ -7,7 +7,7 @@ public class Category {
     private int id;
     private String name;
     private int daysToReturn;
-    private int finePerDay;
+    private double finePerDay;
 
     public Category() {
     }
@@ -43,11 +43,11 @@ public class Category {
         this.daysToReturn = daysToReturn;
     }
 
-    public int getFinePerDay() {
+    public double getFinePerDay() {
         return finePerDay;
     }
 
-    public void setFinePerDay(int finePerDay) {
+    public void setFinePerDay(double finePerDay) {
         this.finePerDay = finePerDay;
     }
 
