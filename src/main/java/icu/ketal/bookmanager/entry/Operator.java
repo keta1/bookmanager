@@ -9,7 +9,7 @@ public class Operator {
     private boolean sex;
     private int age;
     private String IDNum;
-    private long operatingTime;
+    private long workTime;
     private boolean isAdmin;
     private String password;
 
@@ -56,12 +56,12 @@ public class Operator {
         this.IDNum = IDNum;
     }
 
-    public long getOperatingTime() {
-        return operatingTime;
+    public long getWorkTime() {
+        return workTime;
     }
 
-    public void setOperatingTime(long operatingTime) {
-        this.operatingTime = operatingTime;
+    public void setWorkTime(long workTime) {
+        this.workTime = workTime;
     }
 
     public boolean isAdmin() {
@@ -84,12 +84,12 @@ public class Operator {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Operator operator)) return false;
-        return id == operator.id && sex == operator.sex && age == operator.age && isAdmin == operator.isAdmin && Objects.equals(name, operator.name) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(operatingTime, operator.operatingTime) && Objects.equals(password, operator.password);
+        return id == operator.id && sex == operator.sex && age == operator.age && isAdmin == operator.isAdmin && Objects.equals(name, operator.name) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(workTime, operator.workTime) && Objects.equals(password, operator.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, sex, age, IDNum, operatingTime, isAdmin, password);
+        return Objects.hash(id, name, sex, age, IDNum, workTime, isAdmin, password);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Operator {
                 ", sex=" + sex +
                 ", age=" + age +
                 ", IDNum='" + IDNum + '\'' +
-                ", operatingTime='" + operatingTime + '\'' +
+                ", workTime='" + workTime + '\'' +
                 ", isAdmin=" + isAdmin +
                 ", password='" + password + '\'' +
                 '}';

@@ -11,27 +11,41 @@ import java.util.List;
 public interface BookDao {
     @Update("create table if not exists books" +
             "(" +
-            "    id          INTEGER not null" +
-            "        primary key," +
-            "    categoryId  INTEGER not null," +
+            "    id          INTEGER primary key," +
+            "    categoryId  INTEGER references categories," +
             "    name        TEXT    not null," +
             "    author      TEXT    not null," +
             "    translator  TEXT    not null," +
             "    publisher   TEXT    not null," +
             "    publishDate INTEGER not null," +
-            "    price       DOUBLE  not null" +
+            "    price       REAL    not null" +
             ");")
-    Integer createTable();
+    int createTable();
+
     @Delete("drop table books;")
-    Integer dropTable();
+    int dropTable();
+
     @Select("select * from books;")
     List<Book> selectAll();
+
     @Select("select * from books where id = #{id};")
-    Book selectById(Integer id);
+    Book selectById(int id);
+
     @Delete("delete from books where id = #{id};")
-    Integer deleteById(Integer id);
-    @Update("update books set categoryId = #{categoryId}, name = #{name}, author = #{author}, translator = #{translator}, publisher = #{publisher}, publishDate = #{publishDate}, price = #{price} where id = #{id};")
-    Integer update(Book book);
-    @Insert("insert into books(id, categoryId, name, author, translator, publisher, publishDate, price) values(#{id}, #{categoryId}, #{name}, #{author}, #{translator}, #{publisher}, #{publishDate}, #{price});")
-    Integer insert(Book book);
+    int deleteById(int id);
+
+    @Update("update books set" +
+            "   categoryId  = #{categoryId}," +
+            "   name        = #{name}," +
+            "   author      = #{author}," +
+            "   translator  = #{translator}," +
+            "   publisher   = #{publisher}," +
+            "   publishDate = #{publishDate}," +
+            "   price       = #{price} " +
+            "where id       = #{id};")
+    int update(Book book);
+
+    @Insert("insert into books(id, categoryId, name, author, translator, publisher, publishDate, price) " +
+            "values(#{id}, #{categoryId}, #{name}, #{author}, #{translator}, #{publisher}, #{publishDate}, #{price});")
+    int insert(Book book);
 }

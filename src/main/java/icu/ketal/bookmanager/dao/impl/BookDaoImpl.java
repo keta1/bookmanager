@@ -9,10 +9,10 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     @Override
-    public Integer createTable() {
+    public int createTable() {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
-            Integer result = mapper.createTable();
+            int result = mapper.createTable();
             session.commit();
             return result;
         } catch (IOException e) {
@@ -22,7 +22,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Integer dropTable() {
+    public int dropTable() {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
             var result = mapper.dropTable();
@@ -46,7 +46,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book selectById(Integer id) {
+    public Book selectById(int id) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
             return mapper.selectById(id);
@@ -57,10 +57,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Integer deleteById(Integer id) {
+    public int deleteById(int id) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
-            var result =  mapper.deleteById(id);
+            var result = mapper.deleteById(id);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -70,10 +70,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Integer update(Book book) {
+    public int update(Book book) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
-            var result =  mapper.update(book);
+            var result = mapper.update(book);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Integer insert(Book book) {
+    public int insert(Book book) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
-            var result =  mapper.insert(book);
+            var result = mapper.insert(book);
             session.commit();
             return result;
         } catch (IOException e) {

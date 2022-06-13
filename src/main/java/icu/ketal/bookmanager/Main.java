@@ -1,10 +1,9 @@
 package icu.ketal.bookmanager;
 
-import icu.ketal.bookmanager.dao.impl.BookDaoImpl;
+import icu.ketal.bookmanager.db.DatabaseManager;
 
 public class Main {
     public static void main(String[] args) {
-        var dao = new BookDaoImpl();
-        dao.createTable();
+        DatabaseManager.initTables();
     }
 }
