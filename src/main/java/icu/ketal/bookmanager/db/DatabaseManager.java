@@ -1,5 +1,6 @@
 package icu.ketal.bookmanager.db;
 
+import icu.ketal.bookmanager.dao.impl.*;
 import icu.ketal.bookmanager.util.ClazzUtils;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
@@ -11,7 +12,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Set;
 
 public class DatabaseManager {
     private static final String driver = "org.sqlite.JDBC";
@@ -27,7 +30,7 @@ public class DatabaseManager {
                 setLogImpl(StdOutImpl.class);
                 var environmentBuilder = new Environment.Builder(id)
                         .transactionFactory(new JdbcTransactionFactory())
-                        .dataSource(new PooledDataSource(){{
+                        .dataSource(new PooledDataSource() {{
                             setDriver(driver);
                             setUrl(url);
                         }});
@@ -52,5 +55,26 @@ public class DatabaseManager {
 
     public static SqlSession getSqlSession() throws IOException {
         return factory.openSession();
+    }
+
+    public static void initTables() {
+        // info : Because of the outer code constraint, the table is initialized manually here.
+        // todo : Automatically initialize tables in a more logical way.
+        var tables = Set.of(
+                OperatorDaoImpl.class,
+                ReaderDaoImpl.class,
+                CategoryDaoImpl.class,
+                BookDaoImpl.class,
+                BorrowDaoImpl.class
+        );
+        tables.forEach(it -> {
+            try {
+                var dao = it.getConstructor().newInstance();
+                it.getDeclaredMethod("createTable").invoke(dao);
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                     InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
