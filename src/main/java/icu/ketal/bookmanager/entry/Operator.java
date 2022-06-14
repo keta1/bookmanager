@@ -10,6 +10,7 @@ public class Operator {
     private int age;
     private String IDNum;
     private long workTime;
+    private long phoneNum;
     private boolean isAdmin;
     private String password;
 
@@ -60,6 +61,14 @@ public class Operator {
         return workTime;
     }
 
+    public long getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(long phoneNum) {
+        this.phoneNum = workTime;
+    }
+
     public void setWorkTime(long workTime) {
         this.workTime = workTime;
     }
@@ -84,23 +93,24 @@ public class Operator {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Operator operator)) return false;
-        return id == operator.id && sex == operator.sex && age == operator.age && isAdmin == operator.isAdmin && Objects.equals(username, operator.username) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(workTime, operator.workTime) && Objects.equals(password, operator.password);
+        return id == operator.id && sex == operator.sex && age == operator.age && workTime == operator.workTime && phoneNum == operator.phoneNum && isAdmin == operator.isAdmin && Objects.equals(username, operator.username) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(password, operator.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, sex, age, IDNum, workTime, isAdmin, password);
+        return Objects.hash(id, username, sex, age, IDNum, workTime, phoneNum, isAdmin, password);
     }
 
     @Override
     public String toString() {
         return "Operator{" +
                 "id=" + id +
-                ", name='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", sex=" + sex +
                 ", age=" + age +
                 ", IDNum='" + IDNum + '\'' +
-                ", workTime='" + workTime + '\'' +
+                ", workTime=" + workTime +
+                ", phoneNum=" + phoneNum +
                 ", isAdmin=" + isAdmin +
                 ", password='" + password + '\'' +
                 '}';

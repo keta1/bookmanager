@@ -16,7 +16,8 @@ public interface OperatorDao {
             "    sex           BOOLEAN not null," +
             "    age           integer not null," +
             "    IDNum         TEXT    not null," +
-            "    workTime INTEGER not null," +
+            "    workTime      INTEGER not null," +
+            "    phoneNum      INTEGER not null," +
             "    isAdmin       BOOLEAN not null," +
             "    password      text    not null" +
             ");")
@@ -40,12 +41,13 @@ public interface OperatorDao {
             "   age      = #{age}," +
             "   IDNum    = #{IDNum}," +
             "   workTime = #{workTime}," +
+            "   phoneNum = #{phoneNum}," +
             "   isAdmin  = #{isAdmin}," +
             "   password = #{password} " +
             "where id    = #{id}")
     int update(Operator operator);
 
-    @Insert("insert into operators(id, username, sex, age, IDNum, workTime, isAdmin, password) " +
-            "values(#{id}, #{username}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{isAdmin}, #{password});")
+    @Insert("insert into operators(id, username, sex, age, IDNum, workTime, phoneNum, isAdmin, password) " +
+            "values(#{id}, #{username}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{phoneNum}, #{isAdmin}, #{password});")
     int insert(Operator operator);
 }
