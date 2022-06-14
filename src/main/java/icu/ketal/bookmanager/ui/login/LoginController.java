@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import icu.ketal.bookmanager.dao.impl.OperatorDaoImpl;
 import icu.ketal.bookmanager.ui.components.KPasswordField;
 import icu.ketal.bookmanager.ui.components.KTextField;
+import icu.ketal.bookmanager.ui.event.KeyEventUtil;
 import icu.ketal.bookmanager.ui.register.RegisterController;
 import icu.ketal.bookmanager.util.DialogBuilder;
 import io.datafx.controller.ViewController;
@@ -34,16 +35,8 @@ public class LoginController {
 
     @PostConstruct
     public void init() {
-        account.setOnKeyPressed(event -> {
-            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
-                password.requestFocus();
-            }
-        });
-        password.setOnKeyPressed(event -> {
-            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
-                login.fire();
-            }
-        });
+        account.setOnKeyPressed(KeyEventUtil.enterToNext(password));
+        password.setOnKeyPressed(KeyEventUtil.enterToFire(login));
     }
 
     @ActionMethod("register")

@@ -83,9 +83,8 @@ public class DialogBuilder<R> {
                 layout.setBody(new Label(message));
             }
             layout.setStyle("-fx-background-color:WHITE;");
-            var pane = new ScrollPane();
-            pane.setPrefSize(layout.getMinWidth(), layout.getMinHeight());
-            pane.setContent(layout);
+            var pane = new ScrollPane(layout);
+            pane.setMaxHeight(500);
             layout.setActions(new JFXButton(okButtonText) {{
                 getStyleClass().add("dialog-accept");
                 setOnAction(event -> hideWithAnimation());

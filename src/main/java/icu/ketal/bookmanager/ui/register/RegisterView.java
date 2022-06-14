@@ -1,18 +1,19 @@
 package icu.ketal.bookmanager.ui.register;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.validation.base.ValidatorBase;
+import icu.ketal.bookmanager.ui.components.KDatePicker;
 import icu.ketal.bookmanager.ui.components.KPasswordField;
+import icu.ketal.bookmanager.ui.components.KRadioGroup;
 import icu.ketal.bookmanager.ui.components.KTextField;
 import io.datafx.controller.ViewNode;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+
+import java.util.List;
 
 public class RegisterView extends StackPane {
     @ViewNode
@@ -22,11 +23,19 @@ public class RegisterView extends StackPane {
     @ViewNode
     private final KPasswordField password;
     @ViewNode
+    private final KPasswordField confirmPassword;
+    @ViewNode
+    private final KTextField age;
+    @ViewNode
+    private final KTextField IDNum;
+    @ViewNode
+    private final KTextField phoneNum;
+    @ViewNode
     private final JFXButton register;
 
     public RegisterView() {
         var rootView = new VBox() {{
-            setSpacing(40);
+            setSpacing(35);
             setStyle("-fx-background-color:WHITE;-fx-padding:10;");
             setAlignment(Pos.TOP_CENTER);
         }};
@@ -52,24 +61,62 @@ public class RegisterView extends StackPane {
             setPromptText("密码：");
             needInput("请输入密码");
             regex("^[a-zA-Z0-9_]{6,16}$", "密码格式错误，请输入6-16位拉丁字母或数字");
+            getValidators().add(new ValidatorBase("两次密码输入不一致") {
+                @Override
+                protected void eval() {
+                    hasErrors.set(!password.getText().equals(confirmPassword.getText()));
+                }
+            });
         }};
-        rootView.getChildren().addAll(title, id, account, password);
 
-        rootView.getChildren().addAll(new HBox() {{
-            setAlignment(Pos.CENTER);
-            setMinWidth(300);
-            setPrefWidth(300);
-            final var group = new ToggleGroup();
-            var male = new JFXRadioButton("男");
-            male.setPadding(new Insets(10));
-            male.getStyleClass().add("custom-jfx-radio-button-blue");
-            male.setToggleGroup(group);
-            var female = new JFXRadioButton("女");
-            female.setPadding(new Insets(10));
-            female.getStyleClass().add("custom-jfx-radio-button-blue");
-            female.setToggleGroup(group);
-            getChildren().addAll(new Label("性别："), male, female);
-        }});
+        confirmPassword = new KPasswordField() {{
+            setPromptText("确认密码：");
+            needInput("请再次输入密码");
+            regex("^[a-zA-Z0-9_]{6,16}$", "密码格式错误，请输入6-16位拉丁字母或数字");
+            getValidators().add(new ValidatorBase("两次密码输入不一致") {
+                @Override
+                protected void eval() {
+                    hasErrors.set(!password.getText().equals(confirmPassword.getText()));
+                }
+            });
+        }};
+        rootView.getChildren().addAll(title, id, account, password, confirmPassword);
+
+        var chose = new KRadioGroup("性别：", List.of("男", "女"));
+        var choseView = chose.getView(false);
+        try {
+            choseView.getClass().getDeclaredMethod("setAlignment", Pos.class).invoke(choseView, Pos.CENTER_LEFT);
+        } catch (Exception ignored) {
+        }
+        choseView.setMaxWidth(300);
+        choseView.setPrefWidth(300);
+        rootView.getChildren().addAll(choseView);
+
+        age = new KTextField() {{
+            setPromptText("年龄：");
+            needInput("请输入年龄");
+            regex("^[0-9_]{1,3}$", "年龄输入错误");
+        }};
+
+        IDNum = new KTextField() {{
+            setPromptText("证件号码：");
+            needInput("请输入年龄");
+            regex("^[0-9_]{1,3}$", "年龄输入错误");
+        }};
+
+        phoneNum = new KTextField() {{
+            setPromptText("电话号码：");
+            needInput("请输入电话号码");
+            regex("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", "电话号码输入错误");
+        }};
+        rootView.getChildren().addAll(age, IDNum, phoneNum);
+
+        var datePicker = new KDatePicker() {{
+            setPromptText("入职日期：");
+            getStyleClass().addAll("custom-color-picker");
+            setMaxWidth(300);
+        }};
+        rootView.getChildren().addAll(datePicker);
 
         register = new JFXButton("注册") {{
             getStyleClass().add("button-raised");

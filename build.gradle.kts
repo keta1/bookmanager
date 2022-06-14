@@ -47,6 +47,7 @@ val arg = listOf(
     "--add-exports=java.base/java.lang.reflect=com.jfoenix",
     "--add-exports=javafx.controls/com.Sun.javafx.scene.control.behavior=com.jfoenix",
     "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
+    "--add-exports=javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED",
     "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
 
     "--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED",
@@ -70,6 +71,7 @@ val arg = listOf(
     "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
     "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
     "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
+    "--add-exports=javafx.base/com.sun.javafx.binding=ALL-UNNAMED",
     "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
     "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix",
     // fix fcitx5 input
