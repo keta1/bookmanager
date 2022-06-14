@@ -12,7 +12,7 @@ public interface OperatorDao {
     @Update("create table if not exists operators" +
             "(" +
             "    id            INTEGER primary key," +
-            "    name          TEXT    not null," +
+            "    username          TEXT    not null," +
             "    sex           BOOLEAN not null," +
             "    age           integer not null," +
             "    IDNum         TEXT    not null," +
@@ -35,7 +35,7 @@ public interface OperatorDao {
     int deleteById(int id);
 
     @Update("update operators set" +
-            "   name     = #{name}," +
+            "   username     = #{username}," +
             "   sex      = #{sex}," +
             "   age      = #{age}," +
             "   IDNum    = #{IDNum}," +
@@ -45,7 +45,7 @@ public interface OperatorDao {
             "where id    = #{id}")
     int update(Operator operator);
 
-    @Insert("insert into operators(id, name, sex, age, IDNum, workTime, isAdmin, password) " +
-            "values(#{id}, #{name}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{isAdmin}, #{password});")
+    @Insert("insert into operators(id, username, sex, age, IDNum, workTime, isAdmin, password) " +
+            "values(#{id}, #{username}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{isAdmin}, #{password});")
     int insert(Operator operator);
 }

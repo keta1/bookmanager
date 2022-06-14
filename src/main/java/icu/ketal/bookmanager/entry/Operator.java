@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Operator {
     // 操作员编号、用户名、性别、年龄、证件号码、工作时间、电话号码、是否为管理员、密码
     private int id;
-    private String name;
+    private String username;
     private boolean sex;
     private int age;
     private String IDNum;
@@ -24,12 +24,12 @@ public class Operator {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isSex() {
@@ -84,19 +84,19 @@ public class Operator {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Operator operator)) return false;
-        return id == operator.id && sex == operator.sex && age == operator.age && isAdmin == operator.isAdmin && Objects.equals(name, operator.name) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(workTime, operator.workTime) && Objects.equals(password, operator.password);
+        return id == operator.id && sex == operator.sex && age == operator.age && isAdmin == operator.isAdmin && Objects.equals(username, operator.username) && Objects.equals(IDNum, operator.IDNum) && Objects.equals(workTime, operator.workTime) && Objects.equals(password, operator.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, sex, age, IDNum, workTime, isAdmin, password);
+        return Objects.hash(id, username, sex, age, IDNum, workTime, isAdmin, password);
     }
 
     @Override
     public String toString() {
         return "Operator{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", sex=" + sex +
                 ", age=" + age +
                 ", IDNum='" + IDNum + '\'' +
