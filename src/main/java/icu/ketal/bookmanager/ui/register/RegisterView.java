@@ -55,29 +55,27 @@ public class RegisterView extends StackPane {
         }};
         rootView.getChildren().addAll(title, id, account, password);
 
-        final var group = new ToggleGroup();
-
-        var male = new JFXRadioButton("男");
-        male.setPadding(new Insets(10));
-        male.getStyleClass().add("custom-jfx-radio-button-blue");
-        male.setToggleGroup(group);
-
-        var female = new JFXRadioButton("女");
-        female.setPadding(new Insets(10));
-        female.getStyleClass().add("custom-jfx-radio-button-blue");
-        female.setToggleGroup(group);
-
         rootView.getChildren().addAll(new HBox() {{
             setAlignment(Pos.CENTER);
             setMinWidth(300);
             setPrefWidth(300);
+            final var group = new ToggleGroup();
+            var male = new JFXRadioButton("男");
+            male.setPadding(new Insets(10));
+            male.getStyleClass().add("custom-jfx-radio-button-blue");
+            male.setToggleGroup(group);
+            var female = new JFXRadioButton("女");
+            female.setPadding(new Insets(10));
+            female.getStyleClass().add("custom-jfx-radio-button-blue");
+            female.setToggleGroup(group);
             getChildren().addAll(new Label("性别："), male, female);
         }});
 
-        register = new JFXButton("注册");
-        register.getStyleClass().add("button-raised");
-        register.setMinWidth(300);
-        register.setPrefWidth(300);
+        register = new JFXButton("注册") {{
+            getStyleClass().add("button-raised");
+            setMinWidth(300);
+            setPrefWidth(300);
+        }};
         rootView.getChildren().addAll(register);
 
         getChildren().addAll(rootView);
