@@ -25,11 +25,15 @@ public class RegisterView extends StackPane {
     @ViewNode
     private final KPasswordField confirmPassword;
     @ViewNode
+    private final KRadioGroup sex;
+    @ViewNode
     private final KTextField age;
     @ViewNode
     private final KTextField IDNum;
     @ViewNode
     private final KTextField phoneNum;
+    @ViewNode
+    private final KDatePicker datePicker;
     @ViewNode
     private final JFXButton register;
 
@@ -64,6 +68,7 @@ public class RegisterView extends StackPane {
             getValidators().add(new ValidatorBase("两次密码输入不一致") {
                 @Override
                 protected void eval() {
+                    if (confirmPassword.getText().equals("")) return;
                     hasErrors.set(!password.getText().equals(confirmPassword.getText()));
                 }
             });
@@ -82,15 +87,12 @@ public class RegisterView extends StackPane {
         }};
         rootView.getChildren().addAll(title, id, account, password, confirmPassword);
 
-        var chose = new KRadioGroup("性别：", List.of("男", "女"));
-        var choseView = chose.getView(false);
-        try {
-            choseView.getClass().getDeclaredMethod("setAlignment", Pos.class).invoke(choseView, Pos.CENTER_LEFT);
-        } catch (Exception ignored) {
-        }
-        choseView.setMaxWidth(300);
-        choseView.setPrefWidth(300);
-        rootView.getChildren().addAll(choseView);
+        sex = new KRadioGroup("性别：", List.of("男", "女"));
+        sex.initView(false);
+        sex.alignment(Pos.CENTER_LEFT);
+        sex.setMaxWidth(300);
+        sex.setPrefWidth(300);
+        rootView.getChildren().addAll(sex);
 
         age = new KTextField() {{
             setPromptText("年龄：");
@@ -100,18 +102,18 @@ public class RegisterView extends StackPane {
 
         IDNum = new KTextField() {{
             setPromptText("证件号码：");
-            needInput("请输入年龄");
-            regex("^[0-9_]{1,3}$", "年龄输入错误");
+            needInput("请输入证件号码");
+            regex("^[0-9_]{6,16}$", "证件号码输入错误");
         }};
 
         phoneNum = new KTextField() {{
             setPromptText("电话号码：");
             needInput("请输入电话号码");
-            regex("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", "电话号码输入错误");
+            regex("^[1][3-8][0-9]{9}$", "电话号码输入错误");
         }};
         rootView.getChildren().addAll(age, IDNum, phoneNum);
 
-        var datePicker = new KDatePicker() {{
+        datePicker = new KDatePicker() {{
             setPromptText("入职日期：");
             getStyleClass().addAll("custom-color-picker");
             setMaxWidth(300);
