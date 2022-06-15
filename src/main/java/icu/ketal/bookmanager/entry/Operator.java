@@ -66,7 +66,7 @@ public class Operator {
     }
 
     public void setPhoneNum(long phoneNum) {
-        this.phoneNum = workTime;
+        this.phoneNum = phoneNum;
     }
 
     public void setWorkTime(long workTime) {

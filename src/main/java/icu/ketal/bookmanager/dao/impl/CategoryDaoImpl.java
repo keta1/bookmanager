@@ -70,10 +70,10 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public int update(Category book) {
+    public int update(Category category) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(CategoryDao.class);
-            var result = mapper.update(book);
+            var result = mapper.update(category);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public int insert(Category book) {
+    public int insert(Category category) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(CategoryDao.class);
-            var result = mapper.insert(book);
+            var result = mapper.insert(category);
             session.commit();
             return result;
         } catch (IOException e) {

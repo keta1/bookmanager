@@ -70,10 +70,10 @@ public class OperatorDaoImpl implements OperatorDao {
     }
 
     @Override
-    public int update(Operator book) {
+    public int update(Operator operator) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(OperatorDao.class);
-            var result = mapper.update(book);
+            var result = mapper.update(operator);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class OperatorDaoImpl implements OperatorDao {
     }
 
     @Override
-    public int insert(Operator book) {
+    public int insert(Operator operator) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(OperatorDao.class);
-            var result = mapper.insert(book);
+            var result = mapper.insert(operator);
             session.commit();
             return result;
         } catch (IOException e) {

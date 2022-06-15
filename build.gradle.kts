@@ -33,47 +33,30 @@ tasks.withType<ShadowJar> {
 
 val arg = listOf(
     // support java 17+
-    "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
-    "--add-opens=javafx.controls/javafx.scene.control.skin=com.jfoenix",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
-    "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
-    // the next line changes everything.
-    "--add-opens=java.base/java.lang.reflect=com.jfoenix",
-
-    "--add-exports=javafx.controls/javafx.scene.control.skin=com.jfoenix",
-    "--add-exports=java.base/java.lang.reflect=ALL-UNNAMED",
     "--add-exports=java.base/java.lang.reflect=com.jfoenix",
-    "--add-exports=javafx.controls/com.Sun.javafx.scene.control.behavior=com.jfoenix",
+    "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix",
+    "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
     "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
-    "--add-exports=javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
-
-    "--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED",
-
-    "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
-            "=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
-            "=com.jfoenix",
     "--add-exports=javafx.controls/com.sun.javafx.binding=com.jfoenix",
-    "--add-opens=javafx.controls/javafx.scene.control.skin=com.jfoenix",
-    "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
-            "=com.jfoenix",
+    "--add-exports=javafx.controls/javafx.scene.control.skin=com.jfoenix",
     "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
-    "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
-    "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
-    "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix",
-
     "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
-    "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
-    "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
+    "--add-exports=javafx.controls/com.Sun.javafx.scene.control.behavior=com.jfoenix",
+
+    "--add-opens=java.base/java.lang.reflect=com.jfoenix",
+    "--add-opens=javafx.controls/javafx.scene.control.skin=com.jfoenix",
+
+    "--add-exports=java.base/java.lang.reflect=ALL-UNNAMED",
+    "--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED",
     "--add-exports=javafx.base/com.sun.javafx.binding=ALL-UNNAMED",
-    "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
-    "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix",
+    "--add-exports=javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED",
+    "--add-exports=javafx.controls/javafx.scene.control=ALL-UNNAMED",
+    "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
+    "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
+    "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED",
+
+    "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+    "--add-opens=javafx.controls/javafx.scene.control=ALL-UNNAMED",
     // fix fcitx5 input
     "-Djdk.gtk.version=2"
 )

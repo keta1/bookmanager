@@ -70,10 +70,10 @@ public class ReaderDaoImpl implements ReaderDao {
     }
 
     @Override
-    public int update(Reader book) {
+    public int update(Reader reader) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(ReaderDao.class);
-            var result = mapper.update(book);
+            var result = mapper.update(reader);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class ReaderDaoImpl implements ReaderDao {
     }
 
     @Override
-    public int insert(Reader book) {
+    public int insert(Reader reader) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(ReaderDao.class);
-            var result = mapper.insert(book);
+            var result = mapper.insert(reader);
             session.commit();
             return result;
         } catch (IOException e) {

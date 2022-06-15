@@ -70,10 +70,10 @@ public class BorrowDaoImpl implements BorrowDao {
     }
 
     @Override
-    public int update(Borrow book) {
+    public int update(Borrow borrow) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BorrowDao.class);
-            var result = mapper.update(book);
+            var result = mapper.update(borrow);
             session.commit();
             return result;
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class BorrowDaoImpl implements BorrowDao {
     }
 
     @Override
-    public int insert(Borrow book) {
+    public int insert(Borrow borrow) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BorrowDao.class);
-            var result = mapper.insert(book);
+            var result = mapper.insert(borrow);
             session.commit();
             return result;
         } catch (IOException e) {
