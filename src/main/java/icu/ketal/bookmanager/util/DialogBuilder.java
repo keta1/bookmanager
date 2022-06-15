@@ -13,6 +13,7 @@ public class DialogBuilder<R> {
     private String title;
     private String message;
     private String okButtonText;
+    private OnOkButtonClicked listener;
     private String cancelButtonText;
     private String iconPath;
     private String style;
@@ -34,6 +35,12 @@ public class DialogBuilder<R> {
 
     public DialogBuilder setMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    public DialogBuilder setOkButton(String okButtonText, OnOkButtonClicked action) {
+        this.okButtonText = okButtonText;
+        this.listener = action;
         return this;
     }
 
@@ -73,7 +80,7 @@ public class DialogBuilder<R> {
     }
 
     public JFXAlert<R> build() {
-        return new JFXAlert<>(window) {{
+        JFXAlert<R> ret = new JFXAlert<>(window) {{
             setOverlayClose(overlayClose);
             setAnimation(JFXAlertAnimation.CENTER_ANIMATION);
             initModality(Modality.WINDOW_MODAL);
@@ -85,11 +92,24 @@ public class DialogBuilder<R> {
             layout.setStyle("-fx-background-color:WHITE;");
             var pane = new ScrollPane(layout);
             pane.setMaxHeight(500);
-            layout.setActions(new JFXButton(okButtonText) {{
-                getStyleClass().add("dialog-accept");
-                setOnAction(event -> hideWithAnimation());
-            }});
+            if (okButtonText != null) {
+                if (listener == null) {
+                    listener = event -> hideWithAnimation();
+                }
+            }
             setContent(pane);
         }};
+        layout.setActions(new JFXButton(okButtonText) {{
+            getStyleClass().add("dialog-accept");
+            setOnAction(event -> {
+                listener.onClick(ret);
+                ret.hideWithAnimation();
+            });
+        }});
+        return ret;
+    }
+
+    public interface OnOkButtonClicked {
+        void onClick(JFXAlert<?> dialog);
     }
 }
