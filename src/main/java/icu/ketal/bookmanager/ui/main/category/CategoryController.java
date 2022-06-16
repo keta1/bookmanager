@@ -6,11 +6,10 @@ import com.jfoenix.controls.cells.editors.IntegerTextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.jfoenix.svg.SVGGlyph;
-import com.jfoenix.svg.SVGGlyphLoader;
 import icu.ketal.bookmanager.dao.CategoryDao;
 import icu.ketal.bookmanager.dao.impl.CategoryDaoImpl;
 import icu.ketal.bookmanager.util.DialogBuilder;
+import icu.ketal.bookmanager.util.UIHelper;
 import io.datafx.controller.ViewController;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
@@ -58,9 +57,9 @@ public class CategoryController {
      */
     @PostConstruct
     public void init() throws Exception {
-        newButton.setGraphic(getSVG("file-o"));
-        submit.setGraphic(getSVG("arrow-up"));
-        reload.setGraphic(getSVG("repeat, rotate-right"));
+        newButton.setGraphic(UIHelper.getSVG("file-o", 24));
+        submit.setGraphic(UIHelper.getSVG("arrow-up", 24));
+        reload.setGraphic(UIHelper.getSVG("repeat, rotate-right", 24));
         setupEditableTableView();
     }
 
@@ -91,9 +90,6 @@ public class CategoryController {
                             .getRow())
                     .getValue();
             data.name.set(t.getNewValue());
-            dummyData.stream()
-                    .filter(c -> c.id.get() == data.id.get())
-                    .forEach(c -> data.name.set(c.name.get()));
         });
         daysToReturn.setCellFactory((TreeTableColumn<Category, Integer> param) -> {
             return new GenericEditableTreeTableCell<>(
@@ -179,13 +175,6 @@ public class CategoryController {
     public void onReload() {
         reload();
         nodesList.animateList(false);
-    }
-
-    private SVGGlyph getSVG(String glyphName) throws Exception {
-        String fileName = "icomoon.svg";
-        var ret = SVGGlyphLoader.getIcoMoonGlyph(fileName + "." + glyphName);
-        ret.setSize(24);
-        return ret;
     }
 
     /*

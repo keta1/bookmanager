@@ -1,13 +1,12 @@
 package icu.ketal.bookmanager.ui.main.sidemenu;
 
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.svg.SVGGlyph;
-import com.jfoenix.svg.SVGGlyphLoader;
 import icu.ketal.bookmanager.ui.main.bookInfo.BookInfoController;
 import icu.ketal.bookmanager.ui.main.borrow.BorrowController;
 import icu.ketal.bookmanager.ui.main.category.CategoryController;
 import icu.ketal.bookmanager.ui.main.readerInfo.ReaderInfoController;
 import icu.ketal.bookmanager.ui.main.system.SystemController;
+import icu.ketal.bookmanager.util.UIHelper;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
@@ -73,18 +72,11 @@ public class SideMenuController {
         bindNodeToController(borrow, BorrowController.class, contentFlow, contentFlowHandler);
         bindNodeToController(system, SystemController.class, contentFlow, contentFlowHandler);
 
-        category.setGraphic(getSVG("folder-open"));
-        bookInfo.setGraphic(getSVG("book"));
-        readerInfo.setGraphic(getSVG("user"));
-        borrow.setGraphic(getSVG("barcode"));
-        system.setGraphic(getSVG("linux"));
-    }
-
-    private SVGGlyph getSVG(String glyphName) throws Exception {
-        String fileName = "icomoon.svg";
-        var ret = SVGGlyphLoader.getIcoMoonGlyph(fileName + "." + glyphName);
-        ret.setSize(16);
-        return ret;
+        category.setGraphic(UIHelper.getSVG("folder-open", 16));
+        bookInfo.setGraphic(UIHelper.getSVG("book", 16));
+        readerInfo.setGraphic(UIHelper.getSVG("user", 16));
+        borrow.setGraphic(UIHelper.getSVG("barcode", 16));
+        system.setGraphic(UIHelper.getSVG("linux", 16));
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {

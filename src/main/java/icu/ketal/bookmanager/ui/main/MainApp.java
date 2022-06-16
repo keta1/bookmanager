@@ -3,8 +3,8 @@ package icu.ketal.bookmanager.ui.main;
 import com.jfoenix.assets.JFoenixResources;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyph;
-import com.jfoenix.svg.SVGGlyphLoader;
 import icu.ketal.bookmanager.ui.login.LoginApp;
+import icu.ketal.bookmanager.util.UIHelper;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import javafx.application.Application;
@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class MainApp extends Application {
@@ -24,14 +23,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // load font
-        new Thread(() -> {
-            try {
-                SVGGlyphLoader.loadGlyphsFont(MainApp.class.getResourceAsStream("/fonts/icomoon.svg"),
-                        "icomoon.svg");
-            } catch (IOException ioExc) {
-                ioExc.printStackTrace();
-            }
-        }).start();
+        UIHelper.loadSVG();
 
         var flow = new Flow(MainController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
