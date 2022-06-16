@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import icu.ketal.bookmanager.ui.components.KDatePicker?>
+<?import icu.ketal.bookmanager.ui.components.KTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <Label fx:id="title" styleClass="title-label-lite" text="借书"/>
+    <KTextField fx:id="id" promptText="借阅编号"/>
+    <KTextField fx:id="userId" promptText="读者编号"/>
+    <KDatePicker fx:id="shouldReturnDate" promptText="应还日期" maxWidth="300" styleClass="custom-color-picker"/>
+    <JFXButton fx:id="ok" text="确定" styleClass="button-raised" onAction="#onClick"/>
+</VBox>

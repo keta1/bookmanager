@@ -41,12 +41,12 @@ import static javafx.animation.Interpolator.EASE_BOTH;
 
 @ViewController(value = "/fxml/ui/book/bookInfo.fxml")
 public class BookInfoController {
-    private final BookDao bookDao = new BookDaoImpl();
-    private final CategoryDao categoryDao = new CategoryDaoImpl();
     @FXML
     private ScrollPane scrollPane;
     @FXML
     private JFXMasonryPane masonryPane;
+    private final BookDao bookDao = new BookDaoImpl();
+    private final CategoryDao categoryDao = new CategoryDaoImpl();
 
     @PostConstruct
     public void init() throws Exception {

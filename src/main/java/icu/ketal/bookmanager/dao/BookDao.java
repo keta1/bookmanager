@@ -52,7 +52,7 @@ public interface BookDao {
 
     @Select("select * from borrows " +
             "where borrows.id = #{id} and not borrows.returned")
-    Borrow findUnReturnBorrow(Book book);
+    Borrow findUnReturnBorrow(int id);
 
     @Insert("replace into books(id, categoryId, name, author, translator, publisher, publishDate, price) " +
             "values(#{id}, #{categoryId}, #{name}, #{author}, #{translator}, #{publisher}, #{publishDate}, #{price});")

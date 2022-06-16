@@ -30,6 +30,9 @@ public interface BorrowDao {
     @Select("select * from borrows where id = #{id};")
     Borrow selectById(int id);
 
+    @Select("select * from borrows where bookId = #{bookId} and not borrows.returned;")
+    Borrow findUnReturnBorrow(int bookId);
+
     @Delete("delete from borrows where id = #{id};")
     int deleteById(int id);
 

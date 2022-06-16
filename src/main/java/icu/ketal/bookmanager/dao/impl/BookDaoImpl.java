@@ -97,10 +97,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Borrow findUnReturnBorrow(Book book) {
+    public Borrow findUnReturnBorrow(int id) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
-            return mapper.findUnReturnBorrow(book);
+            return mapper.findUnReturnBorrow(id);
         } catch (IOException e) {
             e.printStackTrace();
         }

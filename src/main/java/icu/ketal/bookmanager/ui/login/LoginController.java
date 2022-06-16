@@ -9,6 +9,7 @@ import icu.ketal.bookmanager.ui.main.MainApp;
 import icu.ketal.bookmanager.ui.register.RegisterController;
 import icu.ketal.bookmanager.util.DialogBuilder;
 import icu.ketal.bookmanager.util.KeyEventUtil;
+import icu.ketal.bookmanager.util.OperatorManager;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.ViewNode;
 import io.datafx.controller.flow.Flow;
@@ -75,6 +76,12 @@ public class LoginController {
                 .anyMatch(operator -> operator.getUsername().equals(account.getText())
                         && operator.getPassword().equals(password.getText()));
         if (check) {
+            OperatorManager.setCurrentOperator(
+                    dao.selectAll().stream()
+                            .filter(operator -> operator.getUsername().equals(account.getText()))
+                            .findFirst()
+                            .get()
+            );
             login.getScene().getWindow().hide();
             new MainApp().start(new Stage());
         } else {

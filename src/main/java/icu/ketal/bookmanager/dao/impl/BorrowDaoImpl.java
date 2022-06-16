@@ -57,6 +57,17 @@ public class BorrowDaoImpl implements BorrowDao {
     }
 
     @Override
+    public Borrow findUnReturnBorrow(int bookId) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(BorrowDao.class);
+            return mapper.findUnReturnBorrow(bookId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public int deleteById(int id) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BorrowDao.class);
