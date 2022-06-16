@@ -51,7 +51,7 @@ public interface BookDao {
     int insert(Book book);
 
     @Select("select * from borrows " +
-            "where borrows.id = #{id} and not borrows.returned")
+            "where borrows.bookId = #{id} and not borrows.returned")
     Borrow findUnReturnBorrow(int id);
 
     @Insert("replace into books(id, categoryId, name, author, translator, publisher, publishDate, price) " +
