@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/jfoenix-components.css"
+           xmlns="http://javafx.com/javafx/17">
+    <VBox>
+        <HBox spacing="5">
+            <JFXButton text="新建" onAction="#onNew"/>
+            <JFXButton text="修改" onAction="#onModify"/>
+        </HBox>
+        <ScrollPane>
+            <JFXTreeTableView fx:id="treeTableView" minWidth="800" minHeight="500">
+                <columns>
+                    <JFXTreeTableColumn fx:id="id" minWidth="133" prefWidth="133" resizable="false" text="读者编号"/>
+                    <JFXTreeTableColumn fx:id="name" minWidth="133" resizable="false" text="读者姓名"/>
+                    <JFXTreeTableColumn fx:id="sex" minWidth="133" resizable="false" text="性别"/>
+                    <JFXTreeTableColumn fx:id="age" minWidth="133" resizable="false" text="年龄"/>
+                    <JFXTreeTableColumn fx:id="IDNum" minWidth="133" resizable="false" text="证件号码"/>
+                    <JFXTreeTableColumn fx:id="effectiveDate" minWidth="133" resizable="false" text="会员证件有效日期"/>
+                    <JFXTreeTableColumn fx:id="maxToBorrow" minWidth="133" resizable="false" text="最大借书量"/>
+                    <JFXTreeTableColumn fx:id="phoneNumber" minWidth="133" resizable="false" text="电话号码"/>
+                    <JFXTreeTableColumn fx:id="deposit" minWidth="133" resizable="false" text="押金"/>
+                    <JFXTreeTableColumn fx:id="certificateType" minWidth="133" resizable="false" text="证件类型"/>
+                    <JFXTreeTableColumn fx:id="job" minWidth="133" resizable="false" text="职业"/>
+                    <JFXTreeTableColumn fx:id="issueDate" minWidth="133" resizable="false" text="办证日期"/>
+                </columns>
+            </JFXTreeTableView>
+        </ScrollPane>
+    </VBox>
+</StackPane>

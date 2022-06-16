@@ -94,4 +94,17 @@ public class ReaderDaoImpl implements ReaderDao {
         }
         return -1;
     }
+
+    @Override
+    public int replace(Reader reader) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(ReaderDao.class);
+            var result = mapper.replace(reader);
+            session.commit();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

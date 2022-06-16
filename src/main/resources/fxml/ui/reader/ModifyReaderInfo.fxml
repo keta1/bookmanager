@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import icu.ketal.bookmanager.ui.components.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <Label fx:id="title" styleClass="title-label-lite" text="修改图书信息"/>
+    <KTextField fx:id="id" prefWidth="300" promptText="读者编号" disable="true"/>
+    <KTextField fx:id="name" promptText="读者姓名"/>
+    <KTextField fx:id="sex" promptText="性别"/>
+    <KTextField fx:id="age" promptText="年龄"/>
+    <KTextField fx:id="IDNum" promptText="证件号码"/>
+    <KDatePicker fx:id="effectiveDate" promptText="会员证件有效日期" maxWidth="300"/>
+    <KTextField fx:id="maxToBorrow" promptText="最大借书量"/>
+    <KTextField fx:id="phoneNumber" promptText="电话号码"/>
+    <KTextField fx:id="deposit" promptText="押金"/>
+    <KTextField fx:id="certificateType" promptText="证件类型"/>
+    <KTextField fx:id="job" promptText="职业"/>
+    <KDatePicker fx:id="issueDate" promptText="办证日期" maxWidth="300"/>
+    <JFXButton fx:id="ok" text="确定" styleClass="button-raised" onAction="#onClick"/>
+</VBox>

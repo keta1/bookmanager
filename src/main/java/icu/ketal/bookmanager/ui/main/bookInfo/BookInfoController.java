@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 import static javafx.animation.Interpolator.EASE_BOTH;
 
-@ViewController(value = "/fxml/ui/bookInfo.fxml")
+@ViewController(value = "/fxml/ui/book/bookInfo.fxml")
 public class BookInfoController {
     private final BookDao bookDao = new BookDaoImpl();
     private final CategoryDao categoryDao = new CategoryDaoImpl();
@@ -129,20 +129,16 @@ public class BookInfoController {
 
     @FXML
     public void onNewButton() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/ModifyBookInfo.fxml"));
-        loader.setController(new InputController(new Book(), true));
-        VBox view = loader.load();
-        var layout = new JFXDialogLayout();
-        layout.setBody(view);
-        new DialogBuilder<>(masonryPane.getScene().getWindow())
-                .setContent(layout)
-                .build()
-                .show();
+        showModifyDialog(new Book(), true);
     }
 
     private void onModify(Book book) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/ModifyBookInfo.fxml"));
-        loader.setController(new InputController(book, false));
+        showModifyDialog(book, false);
+    }
+
+    private void showModifyDialog(Book book, boolean add) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/book/ModifyBookInfo.fxml"));
+        loader.setController(new InputController(book, add));
         VBox view = loader.load();
         var layout = new JFXDialogLayout();
         layout.setBody(view);
@@ -224,7 +220,6 @@ public class BookInfoController {
         private void onClick() {
             String msg;
             try {
-                var text = categoryId.getEditor().getText();
                 book.setId(Integer.parseInt(id.getText()));
                 book.setName(name.getText());
                 book.setAuthor(author.getText());
@@ -237,6 +232,7 @@ public class BookInfoController {
                 book.setPrice(Double.parseDouble(price.getText()));
                 bookDao.replace(book);
                 id.getScene().getWindow().hide();
+                reload();
                 msg = "修改成功";
             } catch (Exception e) {
                 e.printStackTrace();

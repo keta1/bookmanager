@@ -27,10 +27,8 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.function.Function;
 
-@ViewController(value = "/fxml/ui/category.fxml")
+@ViewController(value = "/fxml/ui/category/category.fxml")
 public class CategoryController {
-
-    private final CategoryDao dao = new CategoryDaoImpl();
     @FXML
     JFXNodesList nodesList;
     @FXML
@@ -39,7 +37,6 @@ public class CategoryController {
     JFXButton submit;
     @FXML
     JFXButton reload;
-    // editable table view
     @FXML
     private JFXTreeTableView<Category> treeTableView;
     @FXML
@@ -50,6 +47,7 @@ public class CategoryController {
     private JFXTreeTableColumn<Category, Integer> daysToReturn;
     @FXML
     private JFXTreeTableColumn<Category, Double> finePerDay;
+    private final CategoryDao dao = new CategoryDaoImpl();
     private ObservableList<Category> dummyData;
 
     /**
@@ -139,7 +137,7 @@ public class CategoryController {
 
     @FXML
     public void onNewButton() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/InputDialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/category/InputDialog.fxml"));
         loader.setController(new InputController());
         VBox view = loader.load();
         var layout = new JFXDialogLayout();
@@ -177,9 +175,6 @@ public class CategoryController {
         nodesList.animateList(false);
     }
 
-    /*
-     * data class
-     */
     static final class Category extends RecursiveTreeObject<Category> {
         final SimpleIntegerProperty id;
         final StringProperty name;

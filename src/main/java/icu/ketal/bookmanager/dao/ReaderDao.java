@@ -56,4 +56,8 @@ public interface ReaderDao {
     @Insert("insert into readers(id, name, sex, age, IDNum, effectiveDate, maxToBorrow, phoneNumber, deposit, certificateType, job, issueDate) " +
             "values(#{id}, #{name}, #{sex}, #{age}, #{IDNum}, #{effectiveDate}, #{maxToBorrow}, #{phoneNumber}, #{deposit}, #{certificateType}, #{job}, #{issueDate});")
     int insert(Reader reader);
+
+    @Update("replace into readers(id, name, sex, age, IDNum, effectiveDate, maxToBorrow, phoneNumber, deposit, certificateType, job, issueDate) " +
+            "values(#{id}, #{name}, #{sex}, #{age}, #{IDNum}, #{effectiveDate}, #{maxToBorrow}, #{phoneNumber}, #{deposit}, #{certificateType}, #{job}, #{issueDate});")
+    int replace(Reader reader);
 }
