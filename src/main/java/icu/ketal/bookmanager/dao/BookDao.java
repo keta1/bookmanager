@@ -1,6 +1,7 @@
 package icu.ketal.bookmanager.dao;
 
 import icu.ketal.bookmanager.entry.Book;
+import icu.ketal.bookmanager.entry.Borrow;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -48,4 +49,12 @@ public interface BookDao {
     @Insert("insert into books(id, categoryId, name, author, translator, publisher, publishDate, price) " +
             "values(#{id}, #{categoryId}, #{name}, #{author}, #{translator}, #{publisher}, #{publishDate}, #{price});")
     int insert(Book book);
+
+    @Select("select * from borrows " +
+            "where borrows.id = #{id} and not borrows.returned")
+    Borrow findUnReturnBorrow(Book book);
+
+    @Insert("replace into books(id, categoryId, name, author, translator, publisher, publishDate, price) " +
+            "values(#{id}, #{categoryId}, #{name}, #{author}, #{translator}, #{publisher}, #{publishDate}, #{price});")
+    int replace(Book book);
 }

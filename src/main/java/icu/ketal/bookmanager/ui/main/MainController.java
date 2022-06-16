@@ -2,7 +2,7 @@ package icu.ketal.bookmanager.ui.main;
 
 import com.jfoenix.controls.*;
 import icu.ketal.bookmanager.datafx.ExtendedAnimatedFlowContainer;
-import icu.ketal.bookmanager.ui.main.category.CategoryController;
+import icu.ketal.bookmanager.ui.main.bookInfo.BookInfoController;
 import icu.ketal.bookmanager.ui.main.popup.MainPopup;
 import icu.ketal.bookmanager.ui.main.sidemenu.SideMenuController;
 import io.datafx.controller.ViewController;
@@ -88,7 +88,7 @@ public final class MainController {
         // create the inner flow and content
         context = new ViewFlowContext();
         // set the default controller
-        Flow innerFlow = new Flow(CategoryController.class);
+        Flow innerFlow = new Flow(BookInfoController.class);
 
         final FlowHandler flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);

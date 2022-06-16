@@ -3,6 +3,7 @@ package icu.ketal.bookmanager.dao.impl;
 import icu.ketal.bookmanager.dao.BookDao;
 import icu.ketal.bookmanager.db.DatabaseManager;
 import icu.ketal.bookmanager.entry.Book;
+import icu.ketal.bookmanager.entry.Borrow;
 
 import java.io.IOException;
 import java.util.List;
@@ -87,6 +88,30 @@ public class BookDaoImpl implements BookDao {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(BookDao.class);
             var result = mapper.insert(book);
+            session.commit();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public Borrow findUnReturnBorrow(Book book) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(BookDao.class);
+            return mapper.findUnReturnBorrow(book);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public int replace(Book book) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(BookDao.class);
+            var result = mapper.replace(book);
             session.commit();
             return result;
         } catch (IOException e) {

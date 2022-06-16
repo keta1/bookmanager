@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXNodesList?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root"
+           xmlns="http://javafx.com/javafx/2.2">
+    <ScrollPane fitToWidth="true" fx:id="scrollPane" hbarPolicy="NEVER">
+        <JFXMasonryPane fx:id="masonryPane" HSpacing="10" VSpacing="10">
+            <padding>
+                <Insets top="16" right="16" bottom="16" left="16"/>
+            </padding>
+        </JFXMasonryPane>
+    </ScrollPane>
+
+    <JFXNodesList fx:id="nodesList" rotate="180.0" spacing="15" StackPane.alignment="BOTTOM_RIGHT">
+        <StackPane.margin>
+            <Insets bottom="50.0" right="50.0"/>
+        </StackPane.margin>
+        <JFXButton fx:id="explode" contentDisplay="GRAPHIC_ONLY" styleClass="main-button" onAction="#onNewButton">
+            <graphic>
+                <FontIcon iconLiteral="fas-plus" iconSize="24" styleClass="main-icon"/>
+            </graphic>
+        </JFXButton>
+    </JFXNodesList>
+</StackPane>
+
