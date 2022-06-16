@@ -20,8 +20,8 @@ import javafx.scene.control.DialogPane;
 import javafx.util.Duration;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
 @ViewController(root = RegisterView.class)
 public class RegisterController {
@@ -87,7 +87,8 @@ public class RegisterController {
         var password = this.password.getText();
         var age = this.age.getText();
         var IDNum = this.IDNum.getText();
-        var time = new Date(localDate.toEpochDay()).getTime();
+        Timestamp timestamp = Timestamp.valueOf(localDate.atStartOfDay());
+        var time = timestamp.getTime();
         var phoneNum = this.phoneNum.getText();
 
         var operator = new Operator() {{
