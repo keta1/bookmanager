@@ -5,15 +5,17 @@ import com.jfoenix.controls.JFXDialogLayout;
 import icu.ketal.bookmanager.dao.impl.OperatorDaoImpl;
 import icu.ketal.bookmanager.ui.components.KPasswordField;
 import icu.ketal.bookmanager.ui.components.KTextField;
-import icu.ketal.bookmanager.ui.event.KeyEventUtil;
+import icu.ketal.bookmanager.ui.main.MainApp;
 import icu.ketal.bookmanager.ui.register.RegisterController;
 import icu.ketal.bookmanager.util.DialogBuilder;
+import icu.ketal.bookmanager.util.KeyEventUtil;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.ViewNode;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
+import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
 
@@ -35,7 +37,6 @@ public class LoginController {
 
     @PostConstruct
     public void init() {
-        account.setOnKeyPressed(KeyEventUtil.enterToNext(password));
         password.setOnKeyPressed(KeyEventUtil.enterToFire(login));
     }
 
@@ -45,13 +46,13 @@ public class LoginController {
         var flow = new Flow(RegisterController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
         flow.start(container);
-        layout.setBody(container.getView());
+        layout.getChildren().addAll(container.getView());
         new DialogBuilder<>(forgetPassword.getScene().getWindow())
                 .setTitle("注册")
                 .setOverlayClose(false)
                 .setContent(layout)
                 .build()
-                .showAndWait();
+                .show();
     }
 
     @ActionMethod("forgetPassword")
@@ -66,7 +67,7 @@ public class LoginController {
     }
 
     @ActionMethod("login")
-    private void login() {
+    private void login() throws Exception {
         if (!(account.validate() && password.validate())) return;
         var dao = new OperatorDaoImpl();
         var check = dao.selectAll()
@@ -74,11 +75,11 @@ public class LoginController {
                 .anyMatch(operator -> operator.getUsername().equals(account.getText())
                         && operator.getPassword().equals(password.getText()));
         if (check) {
-            System.out.println("login success");
+            login.getScene().getWindow().hide();
+            new MainApp().start(new Stage());
         } else {
             new DialogBuilder<>(forgetPassword.getScene().getWindow())
-                    .setTitle("登陆失败")
-                    .setMessage("请检查用户名或密码是否正确！")
+                    .setMessage("登陆失败,请检查用户名或密码是否正确！")
                     .setOkButtonText("好的")
                     .setOverlayClose(false)
                     .build()

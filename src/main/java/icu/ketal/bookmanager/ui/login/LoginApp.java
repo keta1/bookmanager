@@ -7,9 +7,7 @@ import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -34,12 +32,6 @@ public class LoginApp extends Application {
 
         double width = 800;
         double height = 600;
-        try {
-            Rectangle2D bounds = Screen.getScreens().get(0).getBounds();
-            width = bounds.getWidth() / 2.5;
-            height = bounds.getHeight() / 1.35;
-        } catch (Exception ignored) {
-        }
 
         Scene scene = new Scene(decorator, width, height);
         final ObservableList<String> stylesheets = scene.getStylesheets();

@@ -9,8 +9,8 @@ import icu.ketal.bookmanager.ui.components.KDatePicker;
 import icu.ketal.bookmanager.ui.components.KPasswordField;
 import icu.ketal.bookmanager.ui.components.KRadioGroup;
 import icu.ketal.bookmanager.ui.components.KTextField;
-import icu.ketal.bookmanager.ui.event.KeyEventUtil;
 import icu.ketal.bookmanager.util.DialogBuilder;
+import icu.ketal.bookmanager.util.KeyEventUtil;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.ViewNode;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -49,8 +49,6 @@ public class RegisterController {
 
     @PostConstruct
     public void init() {
-        id.setOnKeyPressed(KeyEventUtil.enterToNext(account));
-        account.setOnKeyPressed(KeyEventUtil.enterToNext(password));
         password.setOnKeyPressed(KeyEventUtil.enterToNext(confirmPassword));
     }
 

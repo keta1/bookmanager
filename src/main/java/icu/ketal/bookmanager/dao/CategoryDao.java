@@ -37,6 +37,10 @@ public interface CategoryDao {
             "where id        = #{id};")
     int update(Category category);
 
+    @Update("replace into categories(id, name, daysToReturn, finePerDay) " +
+            "values(#{id}, #{name}, #{daysToReturn}, #{finePerDay});")
+    int replace(Category category);
+
     @Insert("insert into categories(id, name, daysToReturn, finePerDay) " +
             "values(#{id}, #{name}, #{daysToReturn}, #{finePerDay});")
     int insert(Category category);

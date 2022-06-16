@@ -83,6 +83,19 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
+    public int replace(Category category) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(CategoryDao.class);
+            var result = mapper.replace(category);
+            session.commit();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
     public int insert(Category category) {
         try (var session = DatabaseManager.getSqlSession()) {
             var mapper = session.getMapper(CategoryDao.class);

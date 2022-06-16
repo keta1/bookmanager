@@ -12,7 +12,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(int id, String name, int daysToReturn, int finePerDay) {
+    public Category(int id, String name, int daysToReturn, double finePerDay) {
         this.id = id;
         this.name = name;
         this.daysToReturn = daysToReturn;

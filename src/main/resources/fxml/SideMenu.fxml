@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import java.lang.String?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" xmlns="http://javafx.com/javafx/2.2">
+    <styleClass>
+        <String fx:value="side-menu"/>
+    </styleClass>
+    <JFXListView fx:id="sideList">
+        <Label fx:id="category">图书类别管理</Label>
+        <Label fx:id="bookInfo">图书信息管理</Label>
+        <Label fx:id="readerInfo">读者信息管理</Label>
+        <Label fx:id="borrow">图书借阅管理</Label>
+        <Label fx:id="system">系统维护管理</Label>
+    </JFXListView>
+</StackPane>

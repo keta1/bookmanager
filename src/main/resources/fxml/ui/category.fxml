@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/jfoenix-components.css"
+           xmlns="http://javafx.com/javafx/17">
+    <ScrollPane>
+        <JFXTreeTableView fx:id="treeTableView" minWidth="800" minHeight="500">
+            <columns>
+                <JFXTreeTableColumn fx:id="id" minWidth="133" prefWidth="133" resizable="false" text="图书类别编号"/>
+                <JFXTreeTableColumn fx:id="name" minWidth="133" resizable="false" text="图书类别名称"/>
+                <JFXTreeTableColumn fx:id="daysToReturn" minWidth="133" resizable="false" text="可借天数"/>
+                <JFXTreeTableColumn fx:id="finePerDay" minWidth="133" resizable="false" text="迟还一天的罚款数目"/>
+            </columns>
+        </JFXTreeTableView>
+    </ScrollPane>
+
+    <JFXNodesList fx:id="nodesList" rotate="180.0" spacing="15" StackPane.alignment="BOTTOM_RIGHT">
+        <children>
+            <JFXButton fx:id="explode" contentDisplay="GRAPHIC_ONLY" styleClass="main-button">
+                <graphic>
+                    <FontIcon iconLiteral="fas-plus" iconSize="24" styleClass="main-icon"/>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="newButton" contentDisplay="GRAPHIC_ONLY" onAction="#onNewButton"
+                       styleClass="animated-option-button"/>
+            <JFXButton fx:id="submit" contentDisplay="GRAPHIC_ONLY" onAction="#onSubmit"
+                       styleClass="animated-option-button"/>
+            <JFXButton fx:id="reload" contentDisplay="GRAPHIC_ONLY" onAction="#onReload"
+                       styleClass="animated-option-button"/>
+        </children>
+        <StackPane.margin>
+            <Insets bottom="50.0" right="50.0"/>
+        </StackPane.margin>
+    </JFXNodesList>
+</StackPane>

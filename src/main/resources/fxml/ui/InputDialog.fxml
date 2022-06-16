@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <Label fx:id="title" styleClass="title-label-lite" text="请输入类别编号"/>
+    <JFXTextField fx:id="input"/>
+    <JFXButton fx:id="ok" text="确定" styleClass="button-raised" onAction="#onClick"/>
+</VBox>

@@ -1,4 +1,4 @@
-package icu.ketal.bookmanager.ui.event;
+package icu.ketal.bookmanager.util;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
