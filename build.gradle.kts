@@ -56,7 +56,6 @@ val arg = listOf(
     "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED",
 
     "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
-    "--add-opens=javafx.controls/javafx.scene.control=ALL-UNNAMED",
     // fix fcitx5 input
     "-Djdk.gtk.version=2"
 )

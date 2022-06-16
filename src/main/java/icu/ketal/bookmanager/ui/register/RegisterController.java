@@ -15,7 +15,6 @@ import io.datafx.controller.ViewController;
 import io.datafx.controller.ViewNode;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.util.Duration;
 
@@ -55,10 +54,6 @@ public class RegisterController {
     @ActionMethod("register")
     private void register() throws Exception {
         var root = (DialogPane) register.getScene().getRoot();
-
-        var fDialog = DialogPane.class.getDeclaredField("dialog");
-        fDialog.setAccessible(true);
-        var dialog = (Dialog<?>) fDialog.get(root);
 
         // use & to validate all fields
         if (!(id.validate() & account.validate() & password.validate()
@@ -112,7 +107,7 @@ public class RegisterController {
                     .setMessage("注册成功")
                     .setOkButton("确定", dialog1 -> {
                         dialog1.close();
-                        dialog.close();
+                        root.getScene().getWindow().hide();
                     })
                     .build();
             successdialog.show();
