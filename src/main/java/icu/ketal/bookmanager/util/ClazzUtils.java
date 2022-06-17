@@ -82,7 +82,7 @@ public class ClazzUtils {
             if(path.endsWith(CLASS_SUFFIX)) {
                 path = path.replace(CLASS_SUFFIX, "");
                 // 从"/classes/"后面开始截取
-                String clazzName = CLASS_FILE_PREFIX.replace("/", PACKAGE_SEPARATOR) + path.substring(path.indexOf(CLASS_FILE_PREFIX) + CLASS_FILE_PREFIX.length())
+                String clazzName = CLASS_FILE_PREFIX.replace("/", PACKAGE_SEPARATOR) + path.substring(path.indexOf(CLASS_FILE_PREFIX.replace("/", File.separator)) + CLASS_FILE_PREFIX.length())
                         .replace(File.separator, PACKAGE_SEPARATOR);
                 if(!clazzName.contains("$")) {
                     result.add(clazzName);
@@ -102,7 +102,7 @@ public class ClazzUtils {
                             if(path.endsWith(CLASS_SUFFIX)) {
                                 path = path.replace(CLASS_SUFFIX, "");
                                 // 从"/classes/"后面开始截取
-                                String clazzName = CLASS_FILE_PREFIX.replace("/", PACKAGE_SEPARATOR) + path.substring(path.indexOf(CLASS_FILE_PREFIX) + CLASS_FILE_PREFIX.length())
+                                String clazzName = CLASS_FILE_PREFIX.replace("/", PACKAGE_SEPARATOR) + path.substring(path.indexOf(CLASS_FILE_PREFIX.replace("/", File.separator)) + CLASS_FILE_PREFIX.length())
                                         .replace(File.separator, PACKAGE_SEPARATOR);
                                 if(!clazzName.contains("$")) {
                                     result.add(clazzName);
