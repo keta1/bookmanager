@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import icu.ketal.bookmanager.ui.components.KTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <Label fx:id="title" styleClass="title-label-lite" text="修改用户密码"/>
+    <KTextField fx:id="id" prefWidth="300" promptText="用户编号"/>
+    <KTextField fx:id="password" promptText="密码"/>
+    <JFXButton fx:id="ok" text="确定" styleClass="button-raised" onAction="#onClick"/>
+</VBox>

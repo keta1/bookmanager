@@ -50,4 +50,8 @@ public interface OperatorDao {
     @Insert("insert into operators(id, username, sex, age, IDNum, workTime, phoneNum, isAdmin, password) " +
             "values(#{id}, #{username}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{phoneNum}, #{isAdmin}, #{password});")
     int insert(Operator operator);
+
+    @Update("replace into operators(id, username, sex, age, IDNum, workTime, phoneNum, isAdmin, password) " +
+            "values(#{id}, #{username}, #{sex}, #{age}, #{IDNum}, #{workTime}, #{phoneNum}, #{isAdmin}, #{password});")
+    int replace(Operator operator);
 }

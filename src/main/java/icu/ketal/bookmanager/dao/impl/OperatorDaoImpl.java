@@ -94,4 +94,17 @@ public class OperatorDaoImpl implements OperatorDao {
         }
         return -1;
     }
+
+    @Override
+    public int replace(Operator operator) {
+        try (var session = DatabaseManager.getSqlSession()) {
+            var mapper = session.getMapper(OperatorDao.class);
+            var result = mapper.replace(operator);
+            session.commit();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

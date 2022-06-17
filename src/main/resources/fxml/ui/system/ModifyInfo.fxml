@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import icu.ketal.bookmanager.ui.components.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <Label fx:id="title" styleClass="title-label-lite" text="修改操作员信息"/>
+    <KTextField fx:id="id" prefWidth="300" promptText="操作员编号"/>
+    <KTextField fx:id="username" promptText="用户名"/>
+    <KTextField fx:id="sex" promptText="性别"/>
+    <KTextField fx:id="age" promptText="年龄"/>
+    <KTextField fx:id="IDNum" promptText="证件号码"/>
+    <KDatePicker fx:id="effectiveDate" promptText="工作时间" maxWidth="300"/>
+    <KTextField fx:id="phoneNumber" promptText="电话号码"/>
+    <KTextField fx:id="deposit" promptText="密码"/>
+    <JFXButton fx:id="ok" text="确定" styleClass="button-raised" onAction="#onClick"/>
+</VBox>

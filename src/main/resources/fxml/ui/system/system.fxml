@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx" alignment="CENTER" spacing="30">
+    <JFXButton fx:id="modifyPassword" text="修改用户密码" styleClass="button-raised" onAction="#onModifyPassword"/>
+    <JFXButton fx:id="modifyInfo" text="修改当前用户信息" styleClass="button-raised" onAction="#onModifyInfo"/>
+</VBox>
