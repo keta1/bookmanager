@@ -102,15 +102,15 @@ public class RegisterController {
         var snackbar = new JFXSnackbar(root);
         snackbar.setPrefWidth(300);
         try {
-            operatorDao.insert(operator);
-            var successdialog = new DialogBuilder<>(root.getScene().getWindow())
+            operatorDao.insert(operator); // 插入数据
+            var successDialog = new DialogBuilder<>(root.getScene().getWindow())
                     .setMessage("注册成功")
                     .setOkButton("确定", dialog1 -> {
                         dialog1.close();
                         root.getScene().getWindow().hide();
                     })
                     .build();
-            successdialog.show();
+            successDialog.show();
         } catch (Exception e) {
             snackbar.fireEvent(new JFXSnackbar.SnackbarEvent(
                     new JFXSnackbarLayout("注册失败", "确定", null),

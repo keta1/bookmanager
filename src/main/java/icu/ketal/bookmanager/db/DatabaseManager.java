@@ -27,21 +27,20 @@ public class DatabaseManager {
     static {
         try {
             var configure = new Configuration() {{
-                setLogImpl(StdOutImpl.class);
+                setLogImpl(StdOutImpl.class); // 使用标准输出流打印日志
                 var environmentBuilder = new Environment.Builder(id)
                         .transactionFactory(new JdbcTransactionFactory())
                         .dataSource(new PooledDataSource() {{
-                            setDriver(driver);
-                            setUrl(url);
+                            setDriver(driver); // 设置 JDBC 驱动程序
+                            setUrl(url); // 设置数据库 URL
                         }});
                 setEnvironment(environmentBuilder.build());
 
                 // set type aliases
                 Arrays.stream(typeAliases).forEach(it -> getTypeAliasRegistry().registerAliases(it));
-                // add mappers
                 Arrays.stream(mappers).forEach(it -> ClazzUtils.getClazzName(it).forEach(i -> {
                     try {
-                        this.addMapper(Class.forName(i));
+                        this.addMapper(Class.forName(i)); // 添加指定 package 下的所有 mapper
                     } catch (ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }

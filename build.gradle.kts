@@ -75,10 +75,12 @@ tasks.register<Exec>("runJar") {
 }
 
 dependencies {
-    implementation("javax.annotation:javax.annotation-api:1.3.2")
+    // sqlite3
     implementation("org.xerial:sqlite-jdbc:3.36.0.3")
+    // mybatis3
     implementation("org.mybatis:mybatis:3.5.10")
 
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
     implementation("com.jfoenix:jfoenix:9.0.10")
     implementation("io.datafx:datafx:8.0.1")
     implementation("io.datafx:flow:8.0.1")
